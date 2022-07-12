@@ -1,7 +1,7 @@
 (function(win){
     function requestNotificationsPermission() {
         Notification.requestPermission().then(function(result) {
-            console.log('Permesso non e\' concesso per le notifiche: ' + result);
+            console.log('Permesso per le notifiche: ' + result);
         });
     }
 
@@ -44,6 +44,9 @@
         win.OE = {};
     }
     
-    win.OE.notification = notifyMe;
+    win.OE.notification = {
+        send: notifyMe,
+        request: requestNotificationsPermission
+    };
     requestNotificationsPermission();
 })(window);

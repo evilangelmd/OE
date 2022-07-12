@@ -1,4 +1,4 @@
-(function(win, OE){
+(function(win){
     function requestNotificationsPermission() {
         Notification.requestPermission().then(function(result) {
             console.log('Permesso non e\' concesso per le notifiche: ' + result);
@@ -41,8 +41,8 @@
     }
 
     if(typeof OE !== 'object') {
-        OE = {};
+        win.OE = {};
     }
     
-    OE.notification = notifyMe;
-})(window, OE);
+    win.OE.notification = notifyMe;
+})(window);

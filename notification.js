@@ -49,4 +49,4 @@
         request: requestNotificationsPermission
     };
     requestNotificationsPermission();
-})(window);
+})(unsafeWindow);

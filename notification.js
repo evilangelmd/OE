@@ -14,7 +14,7 @@
         // Let's check whether notification permissions have already been granted
         else if (Notification.permission === "granted") {
             // If it's okay let's create a notification
-            createNotification(title, text, icon);
+            return createNotification(title, text, icon);
         }
 
         // Otherwise, we need to ask the user for permission
@@ -22,7 +22,7 @@
             Notification.requestPermission(function(permission) {
                 // If the user accepts, let's create a notification
                 if (permission === "granted") {
-                    createNotification(title, text, icon);
+                    return createNotification(title, text, icon);
                 }
             });
         }
@@ -38,6 +38,7 @@
         notification.onclick = function() {
             window.focus();
         };
+        return notification;
     }
 
     if(typeof OE !== 'object') {

@@ -1,4 +1,4 @@
-(function(win){
+(function(){
     function requestNotificationsPermission() {
         Notification.requestPermission().then(function(result) {
             console.log('Permesso per le notifiche: ' + result);
@@ -41,12 +41,12 @@
     }
 
     if(typeof OE !== 'object') {
-        win.OE = {};
+        window.OE = {};
     }
     
-    win.OE.notification = {
+    window.OE.notification = {
         send: notifyMe,
         request: requestNotificationsPermission
     };
     requestNotificationsPermission();
-})(window);
+})();

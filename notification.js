@@ -31,8 +31,7 @@
     function createNotification(title, text, icon) {
         let options = {
             body: text,
-            icon: icon,
-            requireInteraction: true
+            icon: icon
         };
         let notification = new Notification(title, options);
         notification.onclick = function() {

@@ -1,5 +1,4 @@
-(function(){
-    function requestNotificationsPermission() {
+function requestNotificationsPermission() {
         Notification.requestPermission().then(function(result) {
             console.log('Permesso per le notifiche: ' + result);
         });
@@ -49,4 +48,3 @@
         request: requestNotificationsPermission
     };
     requestNotificationsPermission();
-})();

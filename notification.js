@@ -45,4 +45,5 @@
     }
     
     win.OE.notification = notifyMe;
+    requestNotificationsPermission();
 })(window);

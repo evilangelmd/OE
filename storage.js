@@ -1,4 +1,4 @@
-(function(){
+(function(win){
 let storage = {
         get: function(key){
             if (!this.isSupported()) {
@@ -52,4 +52,4 @@ let storage = {
     }
     
     win.OE.storage = storage;
-})()
+})(window)

@@ -1,4 +1,9 @@
-(function(win){
+(function(win, utag){
+
+    const ribbonPrivate = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-new">Privato</div></div>';
+    const ribbonAgency = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-price-down">Agenzia</div></div>';
+    
+    const utag_data = Object.assign({}, utag);
 
     function setPrivates(type){
         listings = getListings(type);
@@ -45,6 +50,22 @@
         return result;
     }
     
+    function processElement(id){
+        let _element = $('[data-adid="'+id+'"]');
+        if(!_element) {
+            console.log('non ho trovato: ' + id);
+            return;
+        }
+        let data = {};
+        data.id = parseInt(id);
+        data.link = document.location.origin + _element.find('.item-link').attr('href');
+        data.price = parseInt(_element.find('.item-price').parent().clone().find('span:not(:first)').remove().end().text().trim().replace(/[,\.]00$/, "").replace(/\./g, ""));
+        data.surface = parseInt(_element.find('.item-detail small:contains("m2")').parent().clone().find('small').remove().end().text().trim().replace(/\./g, ""));
+        data.locals = parseInt(_element.find('.item-detail small:contains("local")').parent().clone().find('small').remove().end().text().trim());
+        data.phone = _element.find('span.icon-phone').text().replace("++39", "").trim();
+        return data;
+    }
+    
     if(typeof OE !== 'object') {
         win.OE = {};
         win.OE.parsers = {};
@@ -58,4 +79,4 @@
         list: getListings,
         setBadges: setPrivates
     };
-})(unsafeWindow);
+})(unsafeWindow, utag_data);

@@ -50,6 +50,10 @@
         win.OE.parsers = {};
     }
     
+    if(typeof win.OE.parsers !== 'object') {
+        win.OE.parsers = {};
+    }
+    
     win.OE.parsers.ide = {
         list: getListings,
         setBadges: setPrivates

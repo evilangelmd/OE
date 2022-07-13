@@ -52,4 +52,4 @@ let storage = {
     }
     
     win.OE.storage = storage;
-})(unsafeWindow)
+})(unsafeWindow);

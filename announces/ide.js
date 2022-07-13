@@ -17,7 +17,7 @@
             }
             _element = $('[data-adid="'+key+'"] .item-multimedia');
             _element.find('.item-ribbon-container').remove();
-            _element.find('.item-gallery').before(ribbon);
+            _element.find('.item-gallery, .no-pics').before(ribbon);
         }
         
         return listings;

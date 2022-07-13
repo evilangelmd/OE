@@ -47,6 +47,7 @@
     
     if(typeof OE !== 'object') {
         win.OE = {};
+        win.OE.parsers = {};
     }
     
     win.OE.parsers.ide = {

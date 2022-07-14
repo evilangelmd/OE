@@ -1,4 +1,5 @@
-async function checkAnnouncement(announce) {
+(function(win){
+        async function checkAnnouncement(announce) {
         function send(announce, resolve, reject, tries = 1) {
             let formdata = new URLSearchParams();
             formdata.append('url', announce.link);
@@ -49,3 +50,14 @@ async function sendDataToReos(url, announce, resolve, reject){
             }, 100);
         });
     }
+        
+        
+  if(typeof OE !== 'object') {
+        win.OE = {};
+    }
+        
+    win.OE.common = {
+        check: checkAnnouncement,
+        send: sendDataToReos
+    };
+})(unsafeWindow);

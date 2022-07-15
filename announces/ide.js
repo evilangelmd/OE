@@ -1,9 +1,9 @@
-(function(win, utag){
+(function(win){
 
     const ribbonPrivate = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-new">Privato</div></div>';
     const ribbonAgency = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-price-down">Agenzia</div></div>';
     
-    const utag_data = Object.assign({}, utag);
+    const utag_data = Object.assign({}, win.utag_data);
 
     function setPrivates(type){
         listings = getListings(type);
@@ -79,4 +79,4 @@
         list: getListings,
         setBadges: setPrivates
     };
-})(unsafeWindow, utag_data);
+})(unsafeWindow);

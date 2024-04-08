@@ -46,8 +46,8 @@ let result = {};
         data.id = parseInt(id);
         data.link = document.location.origin + _element.find('.item-link').attr('href');
         data.price = parseInt(_element.find('.item-price').parent().clone().find('span:not(:first)').remove().end().text().trim().replace(/[,\.]00$/, "").replace(/\./g, ""));
-        data.surface = parseInt(_element.find('.item-detail span:contains("m2")').text().trim().replace(/\./g, ""));
-        data.locals = parseInt(_element.find('.item-detail span:contains("local")').text().trim());
+        data.surface = parseInt(_element.find('.item-detail:contains("m2")').text().trim().replace(/\./g, ""));
+        data.locals = parseInt(_element.find('.item-detail:contains("local")').text().trim());
         data.phone = _element.find('span.icon-phone').text().replace("++39", "").trim();
         return data;
     }

@@ -25,7 +25,7 @@
   
   function getListings(type){
         let tag = utag_data;
-
+let result = {};
             tag.list.ads.forEach(function(item, i){
                 let element = processElement(item.adId);
                 element.ownerType = parseInt(item.owner.type);

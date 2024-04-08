@@ -15,7 +15,7 @@
             } else {
                 ribbon = ribbonPrivate;
             }
-            _element = $('[data-adid="'+key+'"] .item-multimedia');
+            _element = $('[data-element-id="'+key+'"] .item-multimedia');
             _element.find('.item-ribbon-container').remove();
             _element.find('.item-gallery, .no-pics').before(ribbon);
         }
@@ -37,8 +37,8 @@ let result = {};
     }
     
     function processElement(id){
-        let _element = $('[data-adid="'+id+'"]');
-        if(!_element) {
+        let _element = $('[data-element-id="'+id+'"]');
+        if(_element.length === 0) {
             console.log('non ho trovato: ' + id);
             return;
         }
@@ -46,8 +46,8 @@ let result = {};
         data.id = parseInt(id);
         data.link = document.location.origin + _element.find('.item-link').attr('href');
         data.price = parseInt(_element.find('.item-price').parent().clone().find('span:not(:first)').remove().end().text().trim().replace(/[,\.]00$/, "").replace(/\./g, ""));
-        data.surface = parseInt(_element.find('.item-detail small:contains("m2")').parent().clone().find('small').remove().end().text().trim().replace(/\./g, ""));
-        data.locals = parseInt(_element.find('.item-detail small:contains("local")').parent().clone().find('small').remove().end().text().trim());
+        data.surface = parseInt(_element.find('.item-detail span:contains("m2")').text().trim().replace(/\./g, ""));
+        data.locals = parseInt(_element.find('.item-detail span:contains("local")').text().trim());
         data.phone = _element.find('span.icon-phone').text().replace("++39", "").trim();
         return data;
     }

@@ -3,7 +3,7 @@
     const ribbonPrivate = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-new">Privato</div></div>';
     const ribbonAgency = '<div class="item-ribbon-container"><div class="item-ribbon ribbon-price-down">Agenzia</div></div>';
     
-    const utag_data = Object.assign({}, win.utag_data);
+    const utag_data = Object.assign({}, win.dataLayerContext);
 
     function setPrivates(type){
         listings = getListings(type);
@@ -25,27 +25,13 @@
   
   function getListings(type){
         let tag = utag_data;
-        let ids = tag.list_ads_adId;
-        let owners = tag.list_ads_owner_type;
 
-        let result = {};
-
-        try {
-            result = owners.reduce(function (result, field, index) {
-                let element = processElement(ids[index]);
-                element.ownerType = parseInt(field);
-                element.type = type;
-                result[ids[index]] = element;
-                return result;
-            }, {});
-        } catch (e) {
             tag.list.ads.forEach(function(item, i){
                 let element = processElement(item.adId);
                 element.ownerType = parseInt(item.owner.type);
                 element.type = type;
                 result[item.adId] = element;
             });
-        }
 
         return result;
     }

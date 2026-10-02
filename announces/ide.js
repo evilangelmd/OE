@@ -23,14 +23,16 @@
         return listings;
     }
   
-  function getListings(type){
-        let tag = utag_data;
-let result = {};
-            tag.list.ads.forEach(function(item, i){
-                let element = processElement(item.adId);
-                element.ownerType = parseInt(item.owner.type);
+    function getListings(type){
+        const listings = $('article[data-element-id]') ;
+        let result = {};
+            listings.each(function(i, item){
+                const jItem = $(item);
+                const adId = jItem.data('elementId');
+                let element = processElement(adId);
+                element.ownerType = jItem.data('isProfessionalAd') ? 2 : 1;
                 element.type = type;
-                result[item.adId] = element;
+                result[adId] = element;
             });
 
         return result;
@@ -46,7 +48,7 @@ let result = {};
         data.id = parseInt(id);
         data.link = document.location.origin + _element.find('.item-link').attr('href');
         data.price = parseInt(_element.find('.item-price').parent().clone().find('span:not(:first)').remove().end().text().trim().replace(/[,\.]00$/, "").replace(/\./g, ""));
-        data.surface = parseInt(_element.find('.item-detail:contains("m2")').text().trim().replace(/\./g, ""));
+        data.surface = parseInt(_element.find('.item-detail:contains("m²")').text().trim().replace(/\D/g, ""));
         data.locals = parseInt(_element.find('.item-detail:contains("local")').text().trim());
         data.phone = _element.find('span.icon-phone').text().replace("++39", "").trim();
         return data;
